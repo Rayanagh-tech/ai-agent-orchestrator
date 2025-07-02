@@ -5,4 +5,7 @@ app = FastAPI()
 
 @app.post("/transcribe")
 async def transcribe_audio(file: UploadFile = File(...)):
-    return {"transcription": f"Mock transcription for {file.filename}", "id": str(uuid.uuid4())}
+    return {
+        "transcription": f"Mock transcription for {file.filename}",
+        "id": str(uuid.uuid4())
+    }
