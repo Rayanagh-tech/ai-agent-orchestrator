@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-agent-ingress
+  namespace: ai-agent
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: ai-agent.local
+      http:
+        paths:
+          - path: /llm
+            pathType: Prefix
+            backend:
+              service:
+                name: llm-service
+                port:
+                  number: 80
+          - path: /stt
+            pathType: Prefix
+            backend:
+              service:
+                name: stt-service
+                port:
+                  number: 80
+          - path: /tts
+            pathType: Prefix
+            backend:
+              service:
+                name: tts-service
+                port:
+                  number: 80

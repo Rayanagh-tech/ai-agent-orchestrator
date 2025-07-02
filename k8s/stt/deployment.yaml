@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stt-service
+  namespace: ai-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stt
+  template:
+    metadata:
+      labels:
+        app: stt
+    spec:
+      containers:
+        - name: stt
+          image: your-dockerhub-username/stt-service:latest
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
